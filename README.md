@@ -1,0 +1,75 @@
+JSON Merge Patch Library
+==============================================
+
+This library provides functions to merge json in accordance with https://tools.ietf.org/html/rfc7386
+
+-------------
+clone the repository and paste:
+```
+python setup.py install
+```
+or for development use:
+```
+python setup.py develop
+```
+This requires setuptools to be installed.
+It has no dependencies outside the stadard library so no pip requirements files are needed. 
+
+To test run:
+```
+python -m unittest discover
+```
+
+Usage as a library
+------------------
+
+The library does not deal with json loading and dumping that is up to the user.
+
+There are two functions:
+
+**merge:** takes a list of input dictionaries and merges them in turn.
+
+**create_patch:** takes 2 dictionaries the original and the target and gives you the minimal patch needed to go from the original to the target.  So if merge(a, b) = c then create_patch(a, c) == b.
+
+```
+import json_merge_patch
+
+input1 = {"a": 1}
+input2 = {"a": 2, "b": 3}
+
+result = json_merge_patch.merge(a, b)
+
+print(result)
+# {'a': 2, 'b': 3}
+
+patch = json_merge_patch.create_patch(input1, result)
+print(patch)
+# {'a': 2, 'b': 3}
+```
+
+Usage as a command line tool
+----------------------------
+
+Has two functions
+
+```
+json-merge-patch merge input1.json input2.json 
+
+json-merge-patch create-patch original.json target.json 
+```
+
+By default results are printed to stdout. If you use the -o flag they can be saved to a file.
+
+```
+json-merge-patch merge input1.json input2.json -o output.json
+
+json-merge-patch create-patch original.json target.json -o patch.json
+```
+
+More can be found at:
+
+```
+json-merge-patch merge --help
+
+json-merge-patch create-patch --help
+```

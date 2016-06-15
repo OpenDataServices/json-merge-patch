@@ -1,0 +1,13 @@
+*.sqlite3
+*.swp
+*.mo
+*~
+.ve
+__pycache__
+media
+.coverage
+htmlcov
+json_merge_patch.egg-info/*
+*.pyc
+dist/*
+build/*

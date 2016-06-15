@@ -1,0 +1,7 @@
+#!/usr/bin/env python
+import json_merge_patch.cli
+json_merge_patch.cli.main()
+
+
+
+
