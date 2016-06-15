@@ -4,7 +4,12 @@ JSON Merge Patch Library
 This library provides functions to merge json in accordance with https://tools.ietf.org/html/rfc7386
 
 -------------
-clone the repository and paste:
+Install using pip:
+```
+pip install json-merge-patch
+```
+
+Or you can clone the repository and paste:
 ```
 python setup.py install
 ```
