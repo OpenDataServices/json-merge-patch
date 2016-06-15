@@ -27,20 +27,28 @@ The library does not deal with json loading and dumping that is up to the user.
 
 There are two functions:
 
-**merge:** takes a list of input dictionaries and merges them in turn.
+**merge:** Takes a list of input dictionaries and merges them in turn.
 
-**create_patch:** takes 2 dictionaries the original and the target and gives you the minimal patch needed to go from the original to the target.  So if merge(a, b) = c then create_patch(a, c) == b.
+**create_patch:** Takes 2 dictionaries the original and the target and gives you the minimal patch needed to go from the original to the target.  So if merge(a, b) == c then create_patch(a, c) == b.
 
+Merge example
 ```
 import json_merge_patch
 
 input1 = {"a": 1}
 input2 = {"a": 2, "b": 3}
 
-result = json_merge_patch.merge(a, b)
+result = json_merge_patch.merge(input1, input2)
 
 print(result)
 # {'a': 2, 'b': 3}
+```
+
+Create Patch example
+```
+
+input1 = {"a": 1}
+results = {'a': 2, 'b': 3}
 
 patch = json_merge_patch.create_patch(input1, result)
 print(patch)
