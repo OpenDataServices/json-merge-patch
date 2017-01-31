@@ -25,8 +25,8 @@ def merge(files, output):
 
 def create_patch(original, target, output):
     with open(original) as original_file, open(target) as target_file:
-        original_json = json.load(original_file, object_pairs_hook=OrderedDict)
-        target_json = json.load(target_file, object_pairs_hook=OrderedDict)
+        original_json = json.load(original_file)
+        target_json = json.load(target_file)
         result = json_merge_patch.create_patch(original_json, target_json)
 
     patch = json.dumps(result, indent=4)

@@ -1,5 +1,5 @@
 import unittest
-import merge
+import lib as merge
 
 fixtures = [
 [{
