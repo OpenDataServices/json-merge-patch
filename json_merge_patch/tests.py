@@ -1,5 +1,6 @@
 import unittest
 import lib as merge
+from collections import OrderedDict
 
 fixtures = [
 [{
@@ -57,6 +58,55 @@ class TestAll(unittest.TestCase):
             if num not in [7, 13, 14]:
                 self.assertEqual(merge.create_patch(fixture[0], fixture[2]), fixture[1])
 
+
+ordered_fixtures = [[
+    OrderedDict([
+        ("title", "Goodbye!"),
+        ("content", "This will be unchanged")
+    ]),
+    OrderedDict([
+        ("title", "Goodbye!"),
+        ("new", "Where will this go?"),
+        ("content", "content")
+    ]),
+    OrderedDict([
+        ("title", "Goodbye!"),
+        ("content", "content"),
+        ("new", "Where will this go?")
+    ]),
+    OrderedDict([
+        ("new", "Where will this go?"),
+        ("title", "Goodbye!"),
+        ("content", "content")
+    ])
+],[
+    OrderedDict([
+        ("title", "Goodbye!"),
+        ("content", "This will be unchanged")
+    ]),
+    OrderedDict([
+        ("title", "Goodbye!"),
+        ("new", OrderedDict([("where", "will I go")])),
+        ("content", "content"),
+    ]),
+    OrderedDict([
+        ("title", "Goodbye!"),
+        ("content", "content"),
+        ("new", OrderedDict([("where", "will I go")])),
+    ]),
+    OrderedDict([
+        ("new", OrderedDict([("where", "will I go")])),
+        ("title", "Goodbye!"),
+        ("content", "content"),
+    ])
+]]
+
+class TestOrdered(unittest.TestCase):
+
+    def test_merge(self):
+        for fixture in ordered_fixtures:
+            self.assertEqual(merge.merge(fixture[0].copy(), fixture[1], position='last'), fixture[2])
+            self.assertEqual(merge.merge(fixture[0].copy(), fixture[1], position='first'), fixture[3])
 
 if __name__ == '__main__':
     unittest.main()

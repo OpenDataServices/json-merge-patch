@@ -5,7 +5,7 @@ import json
 from collections import OrderedDict
 
 
-def merge(files, output):
+def merge(files, output, position):
     result = None
     for file in files:
         with open(file) as input_file:
@@ -13,7 +13,7 @@ def merge(files, output):
         if result is None:
             result = input_json
         else:
-            result = json_merge_patch.merge(result, input_json)
+            result = json_merge_patch.merge(result, input_json, position=position)
 
     merged = json.dumps(result, indent=4)
 
@@ -46,6 +46,7 @@ def main():
       'merge', help='Merge json documents together using JSON merge patch')
 
     parser_merge.add_argument('-o', '--output', help='path of output file, if none specified will print to stdout')
+    parser_merge.add_argument('-f', '--first', action='store_true', help='when merging new properties of object put them first instead of last')
     parser_merge.add_argument('files', help='JSON files to merge in order', nargs='+')
 
     parser_create_patch = subparsers.add_parser(
@@ -57,7 +58,7 @@ def main():
 
     args = parser.parse_args()   
     if args.subparser_name == 'merge':
-        merge(args.files, args.output)
+        merge(args.files, args.output, 'first' if args.first else 'last')
     elif args.subparser_name == 'create-patch':
         create_patch(args.original, args.target, args.output)
     else:
