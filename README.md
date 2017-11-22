@@ -49,6 +49,7 @@ print(result)
 # {'a': 2, 'b': 3}
 ```
 
+
 Create Patch example
 ```
 
@@ -58,6 +59,20 @@ results = {'a': 2, 'b': 3}
 patch = json_merge_patch.create_patch(input1, result)
 print(patch)
 # {'a': 2, 'b': 3}
+```
+
+Merge example preserving order. Inputs need to be OrderedDicts. Will error otherwise.
+Argument "position" can either be 'first', 'last'.
+
+```
+import json_merge_patch
+
+input1 = OrderedDict([("a", 1)])
+input2 = OrderedDict([("a", 1), ("b", 3)])
+
+result = json_merge_patch.merge(input1, input2, position="first")
+print(result)
+# {'b': 3, 'a': 2}
 ```
 
 Usage as a command line tool
