@@ -1,5 +1,5 @@
 import unittest
-import lib as merge
+import json_merge_patch.lib as merge
 from collections import OrderedDict
 
 fixtures = [
