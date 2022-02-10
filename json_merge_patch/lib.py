@@ -63,7 +63,7 @@ def create_patch_obj(source, target):
 
     result = {}
 
-    for key in set(source.keys()) - set(target.keys()):
+    for key in sorted(set(source.keys()) - set(target.keys())):
         result[key] = None
 
     for key, value in target.items():
