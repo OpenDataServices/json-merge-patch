@@ -8,6 +8,6 @@ setup(name='json-merge-patch',
       license='BSD',
       packages=['json_merge_patch'],
       include_package_data=True,
-      python_requires=">=3.7",
+      python_requires=">=3.9",
       url='https://github.com/open-contracting/json-merge-patch'
 )
