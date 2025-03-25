@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.3.0] - 2025-03-25
+
 ## Fixed
 
 Remove invalid dash-separated key 'description-file' in our packaging info https://github.com/OpenDataServices/json-merge-patch/pull/9

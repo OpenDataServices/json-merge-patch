@@ -1,6 +1,6 @@
 from setuptools import setup
 setup(name='json-merge-patch',
-      version='0.2',
+      version='0.3.0',
       description='JSON Merge Patch library (https://tools.ietf.org/html/rfc7386)',
       author='Open Data Services',
       author_email='code@opendataservices.coop',
